@@ -6,6 +6,7 @@ import {FormGroup,FormControl,Validators} from "@angular/forms";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+
   name = new FormControl("",[
     Validators.required,
     Validators.minLength(3)
@@ -23,8 +24,18 @@ export class RegisterComponent {
     Validators.required,
     Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm)
   ])
-  confirmPassword = new FormControl("")
-  phoneNumber = new FormControl("")
+  confirmPassword = new FormControl("",[
+    Validators.required,
+  ])
+  phoneNumber = new FormControl("",[
+    Validators.required,
+    Validators.minLength(11),
+    Validators.maxLength(11)
+  ])
+  showAlert:boolean = false;
+  alertMsg:string = 'Please wait your account is being created!';
+  alertColor:string='blue';
+
   registerForm = new FormGroup({
     name:this.name,
     age:this.age,
@@ -35,5 +46,10 @@ export class RegisterComponent {
   })
   constructor(){
     this.name
+  }
+  register(){
+    this.showAlert=true;
+    this.alertMsg = 'Please wait your account is being created!';
+    this.alertColor = 'blue';
   }
 }
