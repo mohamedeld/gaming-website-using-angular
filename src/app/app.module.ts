@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './user/user.module';
 import { ReactiveFormsModule } from '@angular/forms';
-
-
+import {AngularFireModule} from "@angular/fire/compat";
+import {environment} from "src/environment/environment";
+import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 @NgModule({
   declarations: [
     AppComponent
@@ -18,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     UserModule,
     ReactiveFormsModule,
-
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
